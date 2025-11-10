@@ -3,7 +3,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import useSWR from "swr";
-import { fetcher } from "../lib/swr/fetcher";
+import { fetcher } from "../../lib/swr/fetcher";
 
 
 const ProductPage = () => {
@@ -20,7 +20,7 @@ const ProductPage = () => {
     const { data, error, isLoading } = useSWR(
         "/api/product", fetcher
     )
-
+    console.log(data, "Data Dari SWR")
     // useEffect(() => {
     //     const Data = async () => {
     //         try {

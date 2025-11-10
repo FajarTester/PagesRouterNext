@@ -1,6 +1,11 @@
+import Link from 'next/link';
 import styles from './Product.module.scss';
 import { ProductType } from '@/types/product.type';
 
+
+export function formatPrice(price: number) {
+    return `Rp ${price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}`;
+}
 
 const ProductView = ({ products }: { products: ProductType[] }) => {
     const hasProducts = products.length > 0;
@@ -12,7 +17,7 @@ const ProductView = ({ products }: { products: ProductType[] }) => {
                     <>
                         {products.map((product: ProductType) => {
                             return (
-                                <div key={product.id} className={styles.product__content__item}>
+                                <Link href={`/product/${product.id}`} key={product.id} className={styles.product__content__item}>
                                     <div className={styles.product__content__item__image}>
                                         <img src={product.image} alt={product.name} />
                                     </div>
@@ -23,9 +28,9 @@ const ProductView = ({ products }: { products: ProductType[] }) => {
                                         {product.category}
                                     </p>
                                     <p className={styles.product__content__item__price}>
-                                        ${product.price.toLocaleString('id-ID', { style: 'currency', currency: 'IDR' })}
+                                        {formatPrice(product.price)}
                                     </p>
-                                </div>
+                                </Link>
                             )
                         })}</>
                 ) : (

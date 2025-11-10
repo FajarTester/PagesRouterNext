@@ -1,6 +1,4 @@
 import styles from "@/styles/404.module.scss"
-import { error } from "console"
-import { ReactElement } from "react"
 
 
 
